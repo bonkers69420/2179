@@ -1,0 +1,112 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Mean Income vs Expenditure by State (2022)",
+    "subtitle": "Monthly mean household income and expenditure in Malaysian Ringgit (RM)",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hies_state.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "filter": "datum.state !== 'W.P. Kuala Lumpur' && datum.state !== 'W.P. Labuan' && datum.state !== 'W.P. Putrajaya'"
+    },
+    {
+      "calculate": "toNumber(datum.income_mean)",
+      "as": "income_mean_num"
+    },
+    {
+      "calculate": "toNumber(datum.expenditure_mean)",
+      "as": "expenditure_mean_num"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "width": 30
+      },
+      "encoding": {
+        "x": {
+          "field": "state",
+          "type": "nominal",
+          "title": "State",
+          "sort": {"field": "income_mean_num", "order": "descending"},
+          "axis": {
+            "labelAngle": -45,
+            "labelFontSize": 11,
+            "titleFontSize": 13
+          }
+        },
+        "y": {
+          "field": "income_mean_num",
+          "type": "quantitative",
+          "title": "Amount (RM)",
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "format": ",.0f"
+          }
+        },
+        "color": {
+          "datum": "Mean Income",
+          "scale": {
+            "domain": ["Mean Income", "Mean Expenditure"],
+            "range": ["#4C78A8", "#F58518"]
+          },
+          "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "orient": "top-right"
+          }
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "income_mean_num", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "width": 15
+      },
+      "encoding": {
+        "x": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {"field": "income_mean_num", "order": "descending"}
+        },
+        "y": {
+          "field": "expenditure_mean_num",
+          "type": "quantitative"
+        },
+        "color": {
+          "datum": "Mean Expenditure",
+          "scale": {
+            "domain": ["Mean Income", "Mean Expenditure"],
+            "range": ["#4C78A8", "#F58518"]
+          },
+          "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "orient": "top-right"
+          }
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "expenditure_mean_num", "type": "quantitative", "title": "Mean Expenditure (RM)", "format": ",.0f"}
+        ]
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {"y": "shared", "color": "shared"}
+  }
+}

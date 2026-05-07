@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 500,
+  "title": {
+    "text": "Malaysia Mean Household Income by State (2022)",
+    "subtitle": "Monthly mean household income in Malaysian Ringgit (RM)",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/malaysia-states-merged.topojson",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.Name !== 'Labuan'"
+        },
+        {
+          "calculate": "datum.properties.Name === 'Kuala Lumpur' || datum.properties.Name === 'Putrajaya' ? 'Selangor' : datum.properties.Name === 'Penang' ? 'Pulau Pinang' : datum.properties.Name",
+          "as": "stateName"
+        },
+        {
+          "lookup": "stateName",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hies_state.csv",
+              "format": {"type": "csv"}
+            },
+            "key": "state",
+            "fields": ["income_mean"]
+          }
+        },
+        {
+          "calculate": "toNumber(datum.income_mean)",
+          "as": "income_mean_num"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+        "field": "income_mean_num",
+        "type": "quantitative",
+        "title": "Mean Income (RM)",
+        "scale": {
+            "scheme": "brownbluegreen",
+            "reverse": true,
+            "domain": [4000, 8500, 13000],
+            "domainMid": 8500
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 11,
+            "format": ",.0f"
+        }
+    },
+        "tooltip": [
+          {"field": "stateName", "type": "nominal", "title": "State"},
+          {"field": "income_mean_num", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+        ]
+      }
+    }
+  ]
+}

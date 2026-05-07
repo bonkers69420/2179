@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Mean Income vs Inflation Rate (1970–2022)",
+    "subtitle": "Monthly mean household income (RM) overlaid with annual inflation rate (%)",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/inc_inflation.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "calculate": "year(toDate(datum.date))",
+      "as": "Year"
+    },
+    {
+      "calculate": "toNumber(datum.income_mean)",
+      "as": "IncomeMean"
+    },
+    {
+      "calculate": "toNumber(datum.inflation_rate)",
+      "as": "InflationRate"
+    }
+  ],
+  "resolve": {
+    "scale": {"y": "independent"}
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "opacity": 0.6
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Year",
+          "scale": {
+            "bandPaddingInner": 0.3
+          },
+          "axis": {
+            "labelAngle": -45,
+            "labelFontSize": 11,
+            "titleFontSize": 13
+          }
+        },
+        "y": {
+          "field": "IncomeMean",
+          "type": "quantitative",
+          "title": "Mean Income (RM)",
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "format": ",.0f",
+            "titleColor": "#4C78A8"
+          }
+        },
+        "color": {
+          "datum": "Mean Income (RM)",
+          "scale": {
+            "domain": ["Inflation Rate (%)", "Mean Income (RM)"],
+            "range": ["#F58518", "#4C78A8"]
+          },
+          "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "orient": "bottom"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "IncomeMean", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "point": false
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "InflationRate",
+          "type": "quantitative",
+          "title": "Inflation Rate (%)",
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "format": ".1f",
+            "titleColor": "#F58518"
+          }
+        },
+        "color": {
+          "datum": "Inflation Rate (%)",
+          "scale": {
+            "domain": ["Inflation Rate (%)", "Mean Income (RM)"],
+            "range": ["#F58518", "#4C78A8"]
+          },
+          "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "orient": "bottom"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "InflationRate", "type": "quantitative", "title": "Inflation Rate (%)", "format": ".2f"}
+        ]
+      }
+    }
+  ]
+}

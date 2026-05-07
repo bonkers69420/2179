@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Mean Household Income Rank by Ethnicity (2002–2019)",
+    "subtitle": "Rank 1 = highest mean household income",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/Mean%20Monthly%20Household%20Gross%20Income%20by%20Ethnicity%202.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum['Mean Monthly Household Gross Income'])",
+      "as": "income"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [{"field": "income", "order": "descending"}],
+      "groupby": ["Year"],
+      "frame": [null, null]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "point": false
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {
+            "labelAngle": -45,
+            "labelFontSize": 11,
+            "titleFontSize": 13
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "title": "Rank",
+          "scale": {"domain": [4, 1]},
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "tickMinStep": 1,
+            "values": [1, 2, 3, 4],
+            "format": "d"
+          }
+        },
+        "color": {
+        "field": "Ethnic",
+        "type": "nominal",
+        "scale": {
+            "domain": ["Bumiputera", "Chinese", "Indians", "Others"],
+            "range": ["#E45756", "#4C78A8", "#F58518", "#54A24B"]
+        },
+        "legend": {
+            "title": "Ethnicity",
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "orient": "right"
+            }
+        },
+        "tooltip": [
+          {"field": "Ethnic", "type": "nominal", "title": "Ethnicity"},
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "rank", "type": "quantitative", "title": "Rank"},
+          {"field": "income", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 80
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {"domain": [4, 1]}
+        },
+        "color": {
+        "field": "Ethnic",
+        "type": "nominal",
+        "scale": {
+            "domain": ["Bumiputera", "Chinese", "Indians", "Others"],
+            "range": ["#E45756", "#4C78A8", "#F58518", "#54A24B"]
+        },
+        "legend": null
+        },
+        "tooltip": [
+          {"field": "Ethnic", "type": "nominal", "title": "Ethnicity"},
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "rank", "type": "quantitative", "title": "Rank"},
+          {"field": "income", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+        ]
+      }
+    }
+  ]
+}

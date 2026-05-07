@@ -1,0 +1,75 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Income Share by Group (2002–2019)",
+    "subtitle": "Percentage share of total household income for T20, M40 and B40",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/Income%20Share%20of%20Top%2020%25%20%20Middle%2040%25%20and%20Bottom%2040%25.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "filter": "datum.Strata === 'Malaysia'"
+    },
+    {
+      "calculate": "trim(datum.Category)",
+      "as": "Category"
+    },
+    {
+      "calculate": "toNumber(datum['Income share '])",
+      "as": "IncomeShare"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2.5,
+    "point": false
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "labelAngle": -45,
+        "labelFontSize": 11,
+        "titleFontSize": 13
+      }
+    },
+    "y": {
+      "field": "IncomeShare",
+      "type": "quantitative",
+      "title": "Income Share (%)",
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 13,
+        "format": ",.1f"
+      }
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Top 20%", "Middle 40%", "Bottom 40%"],
+        "range": ["#4C78A8", "#F58518", "#54A24B"]
+      },
+      "legend": {
+        "title": "Income Group",
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "orient": "right"
+      }
+    },
+    "tooltip": [
+      {"field": "Category", "type": "nominal", "title": "Group"},
+      {"field": "Year", "type": "ordinal", "title": "Year"},
+      {"field": "IncomeShare", "type": "quantitative", "title": "Income Share (%)", "format": ".1f"}
+    ]
+  }
+}

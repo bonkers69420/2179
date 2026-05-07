@@ -1,0 +1,75 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Mean & Median Household Income (1970–2022)",
+    "subtitle": "Monthly household income in Malaysian Ringgit (RM)",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hh_income.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+    "calculate": "year(toDate(datum.date))",
+    "as": "Year"
+  },
+  {
+    "fold": ["income_mean", "income_median"],
+    "as": ["Measure", "Value"]
+  },
+  {
+    "calculate": "datum.Measure === 'income_mean' ? 'Mean' : 'Median'",
+    "as": "Label"
+  }
+  ],
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2.5,
+    "point": false
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "labelAngle": -45,
+        "labelFontSize": 11,
+        "titleFontSize": 13
+      }
+    },
+    "y": {
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Monthly Income (RM)",
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 13,
+        "format": ",.0f"
+      }
+    },
+    "color": {
+      "field": "Label",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Mean", "Median"],
+        "range": ["#185FA5", "#0F6E56"]
+      },
+      "legend": {
+        "title": null,
+        "labelFontSize": 11,
+        "orient": "top-left"
+      }
+    },
+    "tooltip": [
+      {"field": "date", "type": "ordinal", "title": "Year"},
+      {"field": "Label", "type": "nominal", "title": "Measure"},
+      {"field": "Value", "type": "quantitative", "title": "Income (RM)", "format": ",.0f"}
+    ]
+  }
+}

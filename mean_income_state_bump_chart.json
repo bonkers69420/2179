@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Mean Household Income Rank by State (1970–2022)",
+    "subtitle": "Rank 1 = highest mean household income",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hh_income_state.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "calculate": "year(toDate(datum.date))",
+      "as": "Year"
+    },
+    {
+      "filter": "datum.state !== 'W.P. Kuala Lumpur' && datum.state !== 'W.P. Labuan' && datum.state !== 'W.P. Putrajaya'"
+    },
+    {
+      "calculate": "datum.income_mean === '' ? null : toNumber(datum.income_mean)",
+      "as": "income_mean_num"
+    },
+    {
+      "filter": "datum.income_mean_num !== null"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [{"field": "income_mean_num", "order": "descending"}],
+      "groupby": ["Year"],
+      "frame": [null, null]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "point": false
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {
+            "labelAngle": -45,
+            "labelFontSize": 11,
+            "titleFontSize": 13
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "title": "Rank",
+          "scale": {"domain": [13, 1]},
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "tickMinStep": 1,
+            "values": [1,2,3,4,5,6,7,8,9,10,11,12,13],
+            "format": "d"
+          }
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {"scheme": "tableau20"},
+          "legend": {
+            "title": "State",
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "rank", "type": "quantitative", "title": "Rank"},
+          {"field": "income_mean_num", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 80
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {"domain": [13, 1]}
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {"scheme": "tableau20"},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "rank", "type": "quantitative", "title": "Rank"},
+          {"field": "income_mean_num", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+        ]
+      }
+    }
+  ]
+}

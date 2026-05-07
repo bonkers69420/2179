@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Mean Household Income by State (2022)",
+    "subtitle": "Monthly mean household income in Malaysian Ringgit (RM)",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hh_income_state.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "filter": "datum.state !== 'W.P. Kuala Lumpur' && datum.state !== 'W.P. Labuan' && datum.state !== 'W.P. Putrajaya'"
+    },
+    {
+      "calculate": "year(toDate(datum.date))",
+      "as": "Year"
+    },
+    {
+      "filter": "datum.Year === 2022"
+    },
+    {
+      "calculate": "toNumber(datum.income_mean)",
+      "as": "income_mean_num"
+    }
+  ],
+  "mark": {
+    "type": "bar"
+  },
+  "encoding": {
+    "x": {
+      "field": "state",
+      "type": "nominal",
+      "title": "State",
+      "sort": {"field": "income_mean_num", "order": "descending"},
+      "axis": {
+        "labelAngle": -45,
+        "labelFontSize": 11,
+        "titleFontSize": 13
+      }
+    },
+    "y": {
+      "field": "income_mean_num",
+      "type": "quantitative",
+      "title": "Mean Monthly Income (RM)",
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 13,
+        "format": ",.0f"
+      }
+    },
+    "color": {
+      "value":"#4C78A8"
+    },
+    "tooltip": [
+      {"field": "state", "type": "nominal", "title": "State"},
+      {"field": "income_mean_num", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+    ]
+  }
+}
