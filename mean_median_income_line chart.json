@@ -93,7 +93,7 @@
       "encoding": {
         "x": {"field": "Year", "type": "ordinal"},
         "y": {"field": "Value", "type": "quantitative"},
-        "text": {"value": "▼ COVID-19 impact income (2020)"}
+        "text": {"value": "▼ COVID-19", "impact income" ,"(2020)"}
       }
     }
   ]
