@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 'container',
+  "width": "container",
   "height": 400,
   "title": {
     "text": "Malaysia Mean & Median Household Income (1970–2022)",
