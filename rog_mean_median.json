@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Income Growth Rate (1974–2022)",
+    "subtitle": "Percentage change in mean and median household income between survey years",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hh_income.csv",
+    "format": {
+      "type": "csv",
+      "parse": {"date": "date"}
+    }
+  },
+  "transform": [
+    {
+      "calculate": "year(datum.date)",
+      "as": "year_val"
+    },
+    {
+      "filter": "datum.year_val != 1970"
+    },
+    {
+      "fold": ["rate_of_growth_mean", "rate_of_growth_median"],
+      "as": ["Growth Type", "Rate"]
+    },
+    {
+      "calculate": "datum['Growth Type'] === 'rate_of_growth_mean' ? 'Mean' : 'Median'",
+      "as": "Label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3.5,
+        "point": false
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": "Year",
+          "axis": {
+            "grid": false,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "format": "%Y"
+          }
+        },
+        "y": {
+          "field": "Rate",
+          "type": "quantitative",
+          "title": "Growth Rate (%)",
+          "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "format": ".1f"
+          }
+        },
+        "color": {
+          "field": "Label",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Mean", "Median"],
+            "range": ["#E45756", "#4C78A8"]
+          },
+          "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "orient": "top-right"
+          }
+        },
+        "tooltip": [
+          {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
+          {"field": "Label", "type": "nominal", "title": "Measure"},
+          {"field": "Rate", "type": "quantitative", "title": "Growth Rate (%)", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1,
+        "color": "#AAAAAA"
+      },
+      "encoding": {
+        "y": {"datum": 0}
+      }
+    },
+   {
+  "transform": [
+    {
+      "filter": "datum.year_val == 1984 && datum['Growth Type'] == 'rate_of_growth_mean'"
+    }
+  ],
+  "mark": {
+    "type": "text",
+    "fontSize": 13,
+    "fontStyle": "italic",
+    "color": "#E45756",
+    "align": "left",
+    "dx": 10,
+    "dy": 0
+  },
+  "encoding": {
+    "x": {"field": "date", "type": "temporal"},
+    "y": {"field": "Rate", "type": "quantitative"},
+    "text": {"value": "▲ Biggest increase in mean (1984) +61.9%"}
+  }
+},
+{
+  "transform": [
+    {
+      "filter": "datum.year_val == 2020 && datum['Growth Type'] == 'rate_of_growth_mean'"
+    }
+  ],
+  "mark": {
+    "type": "text",
+    "fontSize": 13,
+    "fontStyle": "italic",
+    "color": "#E45756",
+    "align": "right",
+    "dx": -10,
+    "dy": -10
+  },
+  "encoding": {
+    "x": {"field": "date", "type": "temporal"},
+    "y": {"field": "Rate", "type": "quantitative"},
+    "text": {"value": "▼ Biggest decrease in mean (2020) -10.3%"}
+  }
+},
+{
+  "transform": [
+    {
+      "filter": "datum.year_val == 1984 && datum['Growth Type'] == 'rate_of_growth_median'"
+    }
+  ],
+  "mark": {
+    "type": "text",
+    "fontSize": 13,
+    "fontStyle": "italic",
+    "color": "#4C78A8",
+    "align": "left",
+    "dx": 10,
+    "dy": 0
+  },
+  "encoding": {
+    "x": {"field": "date", "type": "temporal"},
+    "y": {"field": "Rate", "type": "quantitative"},
+    "text": {"value": "▲ Biggest increase in median (1984) +67.6%"}
+  }
+},
+{
+  "transform": [
+    {
+      "filter": "datum.year_val == 2020 && datum['Growth Type'] == 'rate_of_growth_median'"
+    }
+  ],
+  "mark": {
+    "type": "text",
+    "fontSize": 13,
+    "fontStyle": "italic",
+    "color": "#4C78A8",
+    "align": "right",
+    "dx": -10,
+    "dy": 10
+  },
+  "encoding": {
+    "x": {"field": "date", "type": "temporal"},
+    "y": {"field": "Rate", "type": "quantitative"},
+    "text": {"value": "▼ Biggest decrease in median (2020) -11.3%"}
+  }
+}
+  ]
+}
