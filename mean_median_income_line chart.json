@@ -87,13 +87,13 @@
         "fontStyle": "italic",
         "color": "#E45756",
         "align": "right",
-        "dx":110,
-        "dy": 30
+        "dx":50,
+        "dy": 10
       },
       "encoding": {
         "x": {"field": "Year", "type": "ordinal"},
         "y": {"field": "Value", "type": "quantitative"},
-        "text": {"value": "▼ COVID-19", "impact income" ,"(2020)"}
+        "text": {"value": ["▼ COVID-19", "impact income (2020)"]}
       }
     }
   ]
