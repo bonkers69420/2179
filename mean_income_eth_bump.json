@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
+  "width": 700,
   "height": 400,
   "title": {
     "text": "Malaysia Mean Household Income Rank by Ethnicity (2002–2019)",
@@ -43,8 +43,8 @@
           "type": "ordinal",
           "title": "Year",
           "axis": {
-            "labelAngle": -45,
-            "labelFontSize": 11,
+            "labelAngle": 0,
+            "labelFontSize": 12,
             "titleFontSize": 13
           }
         },
@@ -70,7 +70,7 @@
         },
         "legend": {
             "title": "Ethnicity",
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "titleFontSize": 12,
             "orient": "right"
             }
