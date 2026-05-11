@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
+  "width": 700,
   "height": 400,
   "title": {
     "text": "Malaysia Mean Household Income Rank by State (1970–2022)",
@@ -53,7 +53,7 @@
           "type": "ordinal",
           "title": "Year",
           "axis": {
-            "labelAngle": -45,
+            "labelAngle": 0,
             "labelFontSize": 11,
             "titleFontSize": 13
           }
