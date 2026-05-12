@@ -38,7 +38,7 @@
       "sort": {"field": "gap_num", "order": "ascending"},
       "axis": {
         "labelAngle": -45,
-        "labelFontSize": 12,
+        "labelFontSize": 13,
         "titleFontSize": 13
       }
     },
