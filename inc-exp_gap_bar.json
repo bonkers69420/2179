@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 200,
+  "height": 400,
   "title": {
     "text": "Income vs Expenditure Gap by State (2022)",
     "subtitle": "Difference between mean household income and mean expenditure in RM",
