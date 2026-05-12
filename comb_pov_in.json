@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
+  "width": "container",
   "height": 400,
   "title": {
     "text": "Malaysia Poverty Rate & Gini Coefficient (1970–2022)",
@@ -54,7 +54,7 @@
           "type": "quantitative",
           "title": "Absolute Poverty Rate (%)",
           "axis": {
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "titleFontSize": 13,
             "format": ".1f",
             "titleColor": "#E45756"
@@ -84,7 +84,7 @@
           "type": "quantitative",
           "title": "Gini Coefficient",
           "axis": {
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "titleFontSize": 13,
             "format": ".3f",
             "titleColor": "#4C78A8"
