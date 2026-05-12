@@ -35,13 +35,13 @@
           "field": "IncomeMean",
           "type": "quantitative",
           "title": "Mean Income (RM)",
-          "axis": {"labelFontSize": 13, "titleFontSize": 13, "format": ",.0f", "titleColor": "#f0e442"}
+          "axis": {"labelFontSize": 13, "titleFontSize": 13, "format": ",.0f", "titleColor": "#8F00FF"}
         },
         "color": {
           "datum": "Mean Income (RM)",
           "scale": {
             "domain": ["Mean Income (RM)", "Inflation Rate (%)"],
-            "range": ["#f0e442", "#d55e00"]
+            "range": ["#8F00FF", "#d55e00"]
           },
           "legend": {"title": null, "labelFontSize": 12, "orient": "bottom"}
         },
@@ -65,7 +65,7 @@
           "datum": "Inflation Rate (%)",
           "scale": {
             "domain": ["Mean Income (RM)", "Inflation Rate (%)"],
-            "range": ["#f0e442", "#d55e00"]
+            "range": ["#8F00FF", "#d55e00"]
           },
           "legend": {"title": null, "labelFontSize": 12, "orient": "bottom"}
         },
