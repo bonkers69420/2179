@@ -17,13 +17,8 @@
     }
   },
   "transform": [
-    {
-      "calculate": "year(datum.date)",
-      "as": "year_val"
-    },
-    {
-      "filter": "datum.year_val != 1970"
-    },
+    {"calculate": "year(datum.date)", "as": "year_val"},
+    {"filter": "datum.year_val != 1970"},
     {
       "fold": ["income_rate_of_growth", "inflation_rate"],
       "as": ["Measure", "Value"]
@@ -32,21 +27,12 @@
       "calculate": "datum.Measure === 'income_rate_of_growth' ? 'Income Growth Rate' : 'Inflation Rate'",
       "as": "Label"
     },
-    {
-      "calculate": "toNumber(datum.Value)",
-      "as": "Rate"
-    },
-    {
-      "filter": "datum.Rate !== null && datum.Value !== ''"
-    }
+    {"calculate": "toNumber(datum.Value)", "as": "Rate"},
+    {"filter": "datum.Rate !== null && datum.Value !== ''"}
   ],
   "layer": [
     {
-      "mark": {
-        "type": "line",
-        "strokeWidth": 3,
-        "point": false
-      },
+      "mark": {"type": "line", "strokeWidth": 3, "point": false},
       "encoding": {
         "x": {
           "field": "date",
@@ -64,24 +50,16 @@
           "field": "Rate",
           "type": "quantitative",
           "title": "Rate (%)",
-          "axis": {
-            "labelFontSize": 12,
-            "titleFontSize": 13,
-            "format": ".1f"
-          }
+          "axis": {"labelFontSize": 12, "titleFontSize": 13, "format": ".1f"}
         },
         "color": {
           "field": "Label",
           "type": "nominal",
           "scale": {
             "domain": ["Income Growth Rate", "Inflation Rate"],
-            "range": ["#4C78A8", "#E45756"]
+            "range": ["#E45756", "#BFBFBF"]
           },
-          "legend": {
-            "title": null,
-            "labelFontSize": 12,
-            "orient": "top-right"
-          }
+          "legend": {"title": null, "labelFontSize": 12, "orient": "top-right"}
         },
         "tooltip": [
           {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
@@ -97,16 +75,10 @@
         "strokeWidth": 1,
         "color": "#808080"
       },
-      "encoding": {
-        "y": {"datum": 0}
-      }
+      "encoding": {"y": {"datum": 0}}
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year_val == 1974 && datum.Measure == 'inflation_rate'"
-        }
-      ],
+      "transform": [{"filter": "datum.year_val == 1974 && datum.Measure == 'inflation_rate'"}],
       "mark": {
         "type": "text",
         "fontSize": 13,
@@ -123,16 +95,12 @@
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year_val == 1999 && datum.Measure == 'income_rate_of_growth'"
-        }
-      ],
+      "transform": [{"filter": "datum.year_val == 1999 && datum.Measure == 'income_rate_of_growth'"}],
       "mark": {
         "type": "text",
         "fontSize": 13,
         "fontStyle": "italic",
-        "color": "#4C78A8",
+        "color": "#BFBFBF",
         "align": "left",
         "dx": 8,
         "dy": 12
@@ -144,16 +112,12 @@
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.year_val == 2020 && datum.Measure == 'income_rate_of_growth'"
-        }
-      ],
+      "transform": [{"filter": "datum.year_val == 2020 && datum.Measure == 'income_rate_of_growth'"}],
       "mark": {
         "type": "text",
         "fontSize": 13,
         "fontStyle": "italic",
-        "color": "#4C78A8",
+        "color": "#BFBFBF",
         "align": "right",
         "dx": -8,
         "dy": 12
