@@ -22,7 +22,7 @@
       "as": "gap_num"
     },
     {
-      "calculate": "datum.state === 'Kelantan' ? '#E45756' : '#F5B7B1'",
+      "calculate": "datum.state === 'Kelantan' ? '#00f5d4' : '#94a3b8'",
       "as": "bar_color"
     }
   ],
