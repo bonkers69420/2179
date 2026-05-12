@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
+  "width": "container",
   "height": 400,
   "title": {
     "text": "Malaysia Income Growth Rate vs Inflation Rate (1974–2022)",
