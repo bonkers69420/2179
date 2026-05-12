@@ -60,7 +60,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["Mean", "Median"],
-            "range": ["#FF0000", "#645D5B"]
+            "range": ["#8F00FF", "#0D98BA"]
           },
           "legend": {
             "title": null,
@@ -85,7 +85,7 @@
         "type": "text",
         "fontSize": 12,
         "fontStyle": "italic",
-        "color": "#E45756",
+        "color": "#000000",
         "align": "right",
         "dx":50,
         "dy": 10
