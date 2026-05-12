@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Income Growth Rate vs Inflation Rate (1974–2022)",
+    "subtitle": "Percentage change in mean household income compared to annual inflation rate",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/inc_inflation.csv",
+    "format": {
+      "type": "csv",
+      "parse": {"date": "date"}
+    }
+  },
+  "transform": [
+    {
+      "calculate": "year(datum.date)",
+      "as": "year_val"
+    },
+    {
+      "filter": "datum.year_val != 1970"
+    },
+    {
+      "fold": ["income_rate_of_growth", "inflation_rate"],
+      "as": ["Measure", "Value"]
+    },
+    {
+      "calculate": "datum.Measure === 'income_rate_of_growth' ? 'Income Growth Rate' : 'Inflation Rate'",
+      "as": "Label"
+    },
+    {
+      "calculate": "toNumber(datum.Value)",
+      "as": "Rate"
+    },
+    {
+      "filter": "datum.Rate !== null && datum.Value !== ''"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "point": false
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": "Year",
+          "axis": {
+            "grid": false,
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "format": "%Y"
+          }
+        },
+        "y": {
+          "field": "Rate",
+          "type": "quantitative",
+          "title": "Rate (%)",
+          "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "format": ".1f"
+          }
+        },
+        "color": {
+          "field": "Label",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Income Growth Rate", "Inflation Rate"],
+            "range": ["#4C78A8", "#E45756"]
+          },
+          "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "orient": "top-right"
+          }
+        },
+        "tooltip": [
+          {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
+          {"field": "Label", "type": "nominal", "title": "Measure"},
+          {"field": "Rate", "type": "quantitative", "title": "Rate (%)", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1,
+        "color": "#808080"
+      },
+      "encoding": {
+        "y": {"datum": 0}
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year_val == 1974 && datum.Measure == 'inflation_rate'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#E45756",
+        "align": "left",
+        "dx": 8,
+        "dy": -12
+      },
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "Rate", "type": "quantitative"},
+        "text": {"value": "▲ Oil Crisis 17.3%"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year_val == 1999 && datum.Measure == 'income_rate_of_growth'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#4C78A8",
+        "align": "left",
+        "dx": 8,
+        "dy": 12
+      },
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "Rate", "type": "quantitative"},
+        "text": {"value": "▼ Asian Financial Crisis"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year_val == 2020 && datum.Measure == 'income_rate_of_growth'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#4C78A8",
+        "align": "right",
+        "dx": -8,
+        "dy": 12
+      },
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "Rate", "type": "quantitative"},
+        "text": {"value": "▼ COVID-19"}
+      }
+    }
+  ]
+}
