@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 600,
+  "height": 500,
   "title": {
     "text": "Malaysia Mean Household Income Rank by State (1970–2022)",
     "subtitle": "Rank 1 = highest mean household income",
