@@ -60,7 +60,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["Mean", "Median"],
-            "range": ["#185FA5", "#0F6E56"]
+            "range": ["#110702", "#815328"]
           },
           "legend": {
             "title": null,
