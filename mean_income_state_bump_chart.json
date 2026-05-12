@@ -29,12 +29,7 @@
       "filter": "datum.income_mean_num !== null"
     },
     {
-      "window": [
-        {
-          "op": "rank",
-          "as": "rank"
-        }
-      ],
+      "window": [{"op": "rank", "as": "rank"}],
       "sort": [{"field": "income_mean_num", "order": "descending"}],
       "groupby": ["Year"],
       "frame": [null, null]
@@ -74,11 +69,17 @@
         "color": {
           "field": "state",
           "type": "nominal",
-          "scale": {"range": [
-            "#e6194b", "#f58231", "#ffe119", "#bfef45", "#3cb44b",
-            "#42d4f4", "#f032e6", "#fabed4", "#469990", "#dcbeff",
-            "#9A6324", "#800000", "#aaffc3"
-          ]
+          "scale": {
+            "domain": [
+              "Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan",
+              "Pahang", "Perak", "Perlis", "Pulau Pinang", "Sabah",
+              "Sarawak", "Selangor", "Terengganu"
+            ],
+            "range": [
+              "#e6194b", "#f58231", "#cc9900", "#bfef45", "#3cb44b",
+              "#42d4f4", "#f032e6", "#e07b8a", "#469990", "#dcbeff",
+              "#9A6324", "#800000", "#aaffc3"
+            ]
           },
           "legend": {
             "title": "State",
@@ -114,9 +115,14 @@
           "field": "state",
           "type": "nominal",
           "scale": {
+            "domain": [
+              "Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan",
+              "Pahang", "Perak", "Perlis", "Pulau Pinang", "Sabah",
+              "Sarawak", "Selangor", "Terengganu"
+            ],
             "range": [
-              "#e6194b", "#f58231", "#ffe119", "#bfef45", "#3cb44b",
-              "#42d4f4", "#f032e6", "#fabed4", "#469990", "#dcbeff",
+              "#e6194b", "#f58231", "#cc9900", "#bfef45", "#3cb44b",
+              "#42d4f4", "#f032e6", "#e07b8a", "#469990", "#dcbeff",
               "#9A6324", "#800000", "#aaffc3"
             ]
           },
