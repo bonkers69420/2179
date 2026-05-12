@@ -74,9 +74,12 @@
         "color": {
           "field": "state",
           "type": "nominal",
-          "scale": {"scheme": "#e6194b", "#f58231", "#ffe119", "#bfef45", "#3cb44b",
-    "#42d4f4", "#f032e6", "#fabed4", "#469990", "#dcbeff",
-    "#9A6324", "#800000", "#aaffc3"},
+          "scale": {"range": [
+            "#e6194b", "#f58231", "#ffe119", "#bfef45", "#3cb44b",
+            "#42d4f4", "#f032e6", "#fabed4", "#469990", "#dcbeff",
+            "#9A6324", "#800000", "#aaffc3"
+          ]
+          },
           "legend": {
             "title": "State",
             "labelFontSize": 11,
@@ -110,9 +113,13 @@
         "color": {
           "field": "state",
           "type": "nominal",
-          "scale": {"scheme": "#e6194b", "#f58231", "#ffe119", "#bfef45", "#3cb44b",
-    "#42d4f4", "#f032e6", "#fabed4", "#469990", "#dcbeff",
-    "#9A6324", "#800000", "#aaffc3"},
+          "scale": {
+            "range": [
+              "#e6194b", "#f58231", "#ffe119", "#bfef45", "#3cb44b",
+              "#42d4f4", "#f032e6", "#fabed4", "#469990", "#dcbeff",
+              "#9A6324", "#800000", "#aaffc3"
+            ]
+          },
           "legend": null
         },
         "tooltip": [
