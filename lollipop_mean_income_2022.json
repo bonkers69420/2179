@@ -27,7 +27,7 @@
       "mark": {
         "type": "rule",
         "strokeWidth": 2,
-        "color": "#C0392B"
+        "color": "#000000"
       },
       "encoding": {
         "y": {
@@ -54,7 +54,7 @@
         "type": "point",
         "filled": true,
         "size": 120,
-        "color": "#C0392B"
+        "color": "#000000"
       },
       "encoding": {
         "y": {
@@ -85,7 +85,7 @@
         "align": "left",
         "dx": 8,
         "fontSize": 12,
-        "color": "#1A1A18"
+        "color": "#000000"
       },
       "encoding": {
         "y": {
