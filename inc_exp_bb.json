@@ -58,7 +58,7 @@
           "datum": "Mean Income",
           "scale": {
             "domain": ["Mean Income", "Mean Expenditure"],
-            "range": ["#4C78A8", "#F58518"]
+            "range": ["#081c15", "#f72585"]
           },
           "legend": {
             "title": null,
@@ -91,7 +91,7 @@
           "datum": "Mean Expenditure",
           "scale": {
             "domain": ["Mean Income", "Mean Expenditure"],
-            "range": ["#4C78A8", "#F58518"]
+            "range": ["#081c15", "#f72585"]
           },
           "legend": {
             "title": null,
