@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Poverty Rate & Gini Coefficient (1970–2022)",
+    "subtitle": "Absolute poverty rate (%) vs Gini coefficient (income inequality)",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/poverty_ineq.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "calculate": "year(toDate(datum.date))",
+      "as": "Year"
+    },
+    {
+      "calculate": "toNumber(datum.poverty_absolute)",
+      "as": "PovertyRate"
+    },
+    {
+      "calculate": "toNumber(datum.gini)",
+      "as": "Gini"
+    }
+  ],
+  "resolve": {
+    "scale": {"y": "independent"}
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "point": false,
+        "color": "#E45756"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "titleFontSize": 13
+          }
+        },
+        "y": {
+          "field": "PovertyRate",
+          "type": "quantitative",
+          "title": "Absolute Poverty Rate (%)",
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "format": ".1f",
+            "titleColor": "#E45756"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "PovertyRate", "type": "quantitative", "title": "Poverty Rate (%)", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "point": false,
+        "color": "#4C78A8",
+        "strokeDash": [6, 4]
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Gini",
+          "type": "quantitative",
+          "title": "Gini Coefficient",
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "format": ".3f",
+            "titleColor": "#4C78A8"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "Gini", "type": "quantitative", "title": "Gini Coefficient", "format": ".3f"}
+        ]
+      }
+    }
+  ]
+}
