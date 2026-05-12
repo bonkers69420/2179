@@ -57,7 +57,7 @@
       "type": "nominal",
       "scale": {
         "domain": ["Top 20%", "Middle 40%", "Bottom 40%"],
-        "range": ["#4C78A8", "#F58518", "#54A24B"]
+        "range": ["#C2D8F5", "#F5E4B5", "#B0B893"]
       },
       "legend": {
         "title": "Income Group",
