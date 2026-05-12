@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Income vs Expenditure Gap by State (2022)",
+    "subtitle": "Difference between mean household income and mean expenditure in RM",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hies_state.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "filter": "datum.state !== 'W.P. Kuala Lumpur' && datum.state !== 'W.P. Labuan' && datum.state !== 'W.P. Putrajaya'"
+    },
+    {
+      "calculate": "toNumber(datum.gap)",
+      "as": "gap_num"
+    },
+    {
+      "calculate": "datum.state === 'Kelantan' ? '#E45756' : '#F5B7B1'",
+      "as": "bar_color"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "width": 35
+  },
+  "encoding": {
+    "x": {
+      "field": "state",
+      "type": "nominal",
+      "title": "State",
+      "sort": {"field": "gap_num", "order": "ascending"},
+      "axis": {
+        "labelAngle": -45,
+        "labelFontSize": 12,
+        "titleFontSize": 13
+      }
+    },
+    "y": {
+      "field": "gap_num",
+      "type": "quantitative",
+      "title": "Income - Expenditure Gap (RM)",
+      "axis": {
+        "labelFontSize": 12,
+        "titleFontSize": 13,
+        "format": ",.0f"
+      }
+    },
+    "color": {
+      "field": "bar_color",
+      "type": "nominal",
+      "scale": null,
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "state", "type": "nominal", "title": "State"},
+      {"field": "gap_num", "type": "quantitative", "title": "Gap (RM)", "format": ",.0f"}
+    ]
+  }
+}
