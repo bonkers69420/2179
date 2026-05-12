@@ -66,7 +66,7 @@
         "type": "nominal",
         "scale": {
             "domain": ["Bumiputera", "Chinese", "Indians", "Others"],
-            "range": ["#E45756", "#4C78A8", "#F58518", "#54A24B"]
+            "range": ["#457b9d", "#e07a5f", "#3d405b", "#7b2d8b"]
         },
         "legend": {
             "title": "Ethnicity",
@@ -103,7 +103,7 @@
         "type": "nominal",
         "scale": {
             "domain": ["Bumiputera", "Chinese", "Indians", "Others"],
-            "range": ["#E45756", "#4C78A8", "#F58518", "#54A24B"]
+            "range": ["#457b9d", "#e07a5f", "#3d405b", "#7b2d8b"]
         },
         "legend": null
         },
