@@ -3,121 +3,165 @@
   "width": 700,
   "height": 400,
   "title": {
-    "text": "Malaysia Mean Income vs Inflation Rate (1970–2022)",
-    "subtitle": "Monthly mean household income (RM) overlaid with annual inflation rate (%)",
+    "text": "Malaysia Income Growth Rate vs Inflation Rate (1974–2022)",
+    "subtitle": "Percentage change in mean household income compared to annual inflation rate",
     "fontSize": 16,
     "subtitleFontSize": 13,
     "anchor": "start"
   },
   "data": {
     "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/inc_inflation.csv",
-    "format": {"type": "csv"}
+    "format": {
+      "type": "csv",
+      "parse": {"date": "date"}
+    }
   },
   "transform": [
     {
-      "calculate": "year(toDate(datum.date))",
-      "as": "Year"
-    },
-
-    {
-      "calculate": "toNumber(datum.income_mean)",
-      "as": "IncomeMean"
+      "calculate": "year(datum.date)",
+      "as": "year_val"
     },
     {
-      "calculate": "toNumber(datum.inflation_rate)",
-      "as": "InflationRate"
+      "filter": "datum.year_val != 1970"
+    },
+    {
+      "fold": ["income_rate_of_growth", "inflation_rate"],
+      "as": ["Measure", "Value"]
+    },
+    {
+      "calculate": "datum.Measure === 'income_rate_of_growth' ? 'Income Growth Rate' : 'Inflation Rate'",
+      "as": "Label"
+    },
+    {
+      "calculate": "toNumber(datum.Value)",
+      "as": "Rate"
+    },
+    {
+      "filter": "datum.Rate !== null && datum.Value !== ''"
     }
   ],
-  "resolve": {
-    "scale": {"y": "independent"}
-  },
   "layer": [
     {
       "mark": {
-        "type": "bar"
+        "type": "line",
+        "strokeWidth": 3,
+        "point": false
       },
       "encoding": {
         "x": {
-          "field": "Year",
-          "type": "ordinal",
+          "field": "date",
+          "type": "temporal",
           "title": "Year",
-          "scale": {
-            "bandPaddingInner": 0.3
-          },
           "axis": {
+            "grid": false,
             "labelAngle": 0,
             "labelFontSize": 11,
-            "titleFontSize": 13
+            "titleFontSize": 13,
+            "format": "%Y"
           }
         },
         "y": {
-          "field": "IncomeMean",
+          "field": "Rate",
           "type": "quantitative",
-          "title": "Mean Income (RM)",
+          "title": "Rate (%)",
           "axis": {
-            "labelFontSize": 13,
+            "labelFontSize": 12,
             "titleFontSize": 13,
-            "format": ",.0f",
-            "titleColor": "#4C78A8"
+            "format": ".1f"
           }
         },
         "color": {
-          "datum": "Mean Income (RM)",
+          "field": "Label",
+          "type": "nominal",
           "scale": {
-            "domain": ["Mean Income (RM)", "Inflation Rate (%)"],
+            "domain": ["Income Growth Rate", "Inflation Rate"],
             "range": ["#4C78A8", "#E45756"]
           },
           "legend": {
             "title": null,
             "labelFontSize": 12,
-            "orient": "bottom"
+            "orient": "top-right"
           }
         },
         "tooltip": [
-          {"field": "Year", "type": "ordinal", "title": "Year"},
-          {"field": "IncomeMean", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
+          {"field": "date", "type": "temporal", "title": "Year", "format": "%Y"},
+          {"field": "Label", "type": "nominal", "title": "Measure"},
+          {"field": "Rate", "type": "quantitative", "title": "Rate (%)", "format": ".2f"}
         ]
       }
     },
     {
       "mark": {
-        "type": "line",
-        "strokeWidth": 2.5,
-        "point": false,
-        "color": "#E45756"
+        "type": "rule",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1,
+        "color": "#808080"
       },
       "encoding": {
-        "x": {
-          "field": "Year",
-          "type": "ordinal"
-        },
-        "y": {
-          "field": "InflationRate",
-          "type": "quantitative",
-          "title": "Inflation Rate (%)",
-          "axis": {
-            "labelFontSize": 13,
-            "titleFontSize": 13,
-            "format": ".1f",
-            "titleColor": "#E45756"
-          }
-        },
-        "color": {
-          "datum": "Inflation Rate (%)",
-          "scale": {
-            "domain": ["Mean Income (RM)", "Inflation Rate (%)"],
-            "range": ["#4C78A8", "#E45756"]
-          },
-          "legend": {
-            "title": null,
-            "labelFontSize": 12,
-            "orient": "bottom"
-          }
-        },
-        "tooltip": [
-          {"field": "Year", "type": "ordinal", "title": "Year"},
-          {"field": "InflationRate", "type": "quantitative", "title": "Inflation Rate (%)", "format": ".2f"}
-        ]
+        "y": {"datum": 0}
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year_val == 1974 && datum.Measure == 'inflation_rate'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#E45756",
+        "align": "left",
+        "dx": 8,
+        "dy": -12
+      },
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "Rate", "type": "quantitative"},
+        "text": {"value": "▲ Oil Crisis 17.3%"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year_val == 1999 && datum.Measure == 'income_rate_of_growth'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#4C78A8",
+        "align": "left",
+        "dx": 8,
+        "dy": 12
+      },
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "Rate", "type": "quantitative"},
+        "text": {"value": "▼ Asian Financial Crisis"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year_val == 2020 && datum.Measure == 'income_rate_of_growth'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#4C78A8",
+        "align": "right",
+        "dx": -8,
+        "dy": 12
+      },
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "Rate", "type": "quantitative"},
+        "text": {"value": "▼ COVID-19"}
       }
     }
   ]
