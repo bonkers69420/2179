@@ -35,13 +35,13 @@
           "field": "Gini",
           "type": "quantitative",
           "title": "Gini Coefficient",
-          "axis": {"labelFontSize": 12, "titleFontSize": 13, "format": ".3f", "titleColor": "#4C78A8"}
+          "axis": {"labelFontSize": 12, "titleFontSize": 13, "format": ".3f", "titleColor": "#590d22"}
         },
         "color": {
           "datum": "Gini Coefficient",
           "scale": {
             "domain": ["Gini Coefficient", "Poverty Rate (%)"],
-            "range": ["#4C78A8", "#E45756"]
+            "range": ["#590d22", "#D9D0A9"]
           },
           "legend": {"title": null, "labelFontSize": 12, "orient": "top", "symbolType": "square"}
         },
@@ -59,13 +59,13 @@
           "field": "PovertyRate",
           "type": "quantitative",
           "title": "Absolute Poverty Rate (%)",
-          "axis": {"labelFontSize": 12, "titleFontSize": 13, "format": ".1f", "titleColor": "#E45756"}
+          "axis": {"labelFontSize": 12, "titleFontSize": 13, "format": ".1f", "titleColor": "#D9D0A9"}
         },
         "color": {
           "datum": "Poverty Rate (%)",
           "scale": {
             "domain": ["Gini Coefficient", "Poverty Rate (%)"],
-            "range": ["#4C78A8", "#E45756"]
+            "range": ["#590d22", "#D9D0A9"]
           },
           "legend": {"title": null, "labelFontSize": 12, "orient": "top", "symbolType": "stroke"}
         },
