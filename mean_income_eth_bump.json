@@ -70,8 +70,8 @@
         },
         "legend": {
             "title": "Ethnicity",
-            "labelFontSize": 12,
-            "titleFontSize": 12,
+            "labelFontSize": 14,
+            "titleFontSize": 15,
             "orient": "right"
             }
         },
