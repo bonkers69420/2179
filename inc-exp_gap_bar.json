@@ -22,7 +22,7 @@
       "as": "gap_num"
     },
     {
-      "calculate": "datum.state === 'Kelantan' ? '#00f5d4' : '#94a3b8'",
+      "calculate": "datum.state === 'Kelantan' || datum.state === 'Selangor' ? '#00f5d4' : '#94a3b8'",
       "as": "bar_color"
     }
   ],
