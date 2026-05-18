@@ -75,7 +75,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["Income Growth Rate", "Inflation Rate"],
-            "range": ["#E45756", "#BFBFBF"]
+            "range": ["#E45756", "#7E824F"]
           },
           "legend": {
             "title": null,
@@ -111,7 +111,7 @@
         "type": "text",
         "fontSize": 13,
         "fontStyle": "italic",
-        "color": "#BFBFBF",
+        "color": "#7E824F",
         "align": "left",
         "dx": 8,
         "dy": -12
