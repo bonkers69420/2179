@@ -41,7 +41,7 @@
           "datum": "Mean Income (RM)",
           "scale": {
             "domain": ["Mean Income (RM)", "Inflation Rate (%)"],
-            "range": ["#8F00FF", "#BFBFBF"]
+            "range": ["#8F00FF", "#E8C65A"]
           },
           "legend": {"title": null, "labelFontSize": 12, "orient": "bottom"}
         },
@@ -65,7 +65,7 @@
           "datum": "Inflation Rate (%)",
           "scale": {
             "domain": ["Mean Income (RM)", "Inflation Rate (%)"],
-            "range": ["#8F00FF", "#BFBFBF"]
+            "range": ["#8F00FF", "#E8C65A"]
           },
           "legend": {"title": null, "labelFontSize": 12, "orient": "bottom"}
         },
@@ -84,7 +84,7 @@
         "dy": 7,
         "fontSize": 12,
         "fontStyle": "italic",
-        "color": "#BFBFBF"
+        "color": "#E8C65A"
       },
       "encoding": {
         "x": {"field": "Year", "type": "ordinal"},
