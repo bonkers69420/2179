@@ -59,7 +59,7 @@
           "field": "InflationRate",
           "type": "quantitative",
           "title": "Inflation Rate (%)",
-          "axis": {"labelFontSize": 13, "titleFontSize": 13, "format": ".1f", "titleColor": "#BFBFBF"}
+          "axis": {"labelFontSize": 13, "titleFontSize": 13, "format": ".1f", "titleColor": "#E8C65A"}
         },
         "color": {
           "datum": "Inflation Rate (%)",
