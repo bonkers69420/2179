@@ -3,7 +3,7 @@
   "width": "container",
   "height": 400,
   "title": {
-    "text": "Malaysia Gini Coefficient (1970–2022)",
+    "text": "Malaysia Gini Coefficient (2002–2022)",
     "subtitle": "Gini coefficient across the years",
     "fontSize": 16,
     "subtitleFontSize": 13,
@@ -24,7 +24,8 @@
     },
     {
       "filter": "datum.Rate !== null && datum.Rate !== ''"
-    }
+    },
+    {"filter": "datum.Year >= 2002 && datum.Year <= 2022"}
   ],
   "mark": {
     "type": "line",
