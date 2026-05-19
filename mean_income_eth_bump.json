@@ -10,7 +10,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/Mean%20Monthly%20Household%20Gross%20Income%20by%20Ethnicity%202.csv",
+    "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/Mean%20Monthly%20Household%20Gross%20Income%20by%20Ethnicity%202.csv",
     "format": {"type": "csv"}
   },
   "transform": [
@@ -66,7 +66,7 @@
         "type": "nominal",
         "scale": {
             "domain": ["Bumiputera", "Chinese", "Indians", "Others"],
-            "range": ["#5E6EBD", "#52242F", "#97B089", "#8F7D79"]
+            "range": ["#5E6EBD", "#8A284C", "#97B089", "#8F7D79"]
         },
         "legend": {
             "title": "Ethnicity",
@@ -103,7 +103,7 @@
         "type": "nominal",
         "scale": {
             "domain": ["Bumiputera", "Chinese", "Indians", "Others"],
-            "range": ["#5E6EBD", "#52242F", "#97B089", "#8F7D79"]
+            "range": ["#5E6EBD", "#8A284C", "#97B089", "#8F7D79"]
         },
         "legend": null
         },
