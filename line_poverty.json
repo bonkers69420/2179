@@ -10,7 +10,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hh_poverty.csv",
+    "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/poverty_ineq.csv",
     "format": {"type": "csv"}
   },
   "transform": [
@@ -52,7 +52,7 @@
         "format": ".1f"
       }
     },
-    "color": {"value": "#E45756"},
+    "color": {"value": "#E68ED6"},
     "tooltip": [
       {"field": "Year", "type": "ordinal", "title": "Year"},
       {"field": "Rate", "type": "quantitative", "title": "Poverty Rate (%)", "format": ".1f"}
