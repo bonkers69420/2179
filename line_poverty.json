@@ -3,7 +3,7 @@
   "width": "container",
   "height": 400,
   "title": {
-    "text": "Malaysia Absolute Poverty Rate (1970–2022)",
+    "text": "Malaysia Absolute Poverty Rate (2000–2022)",
     "subtitle": "Percentage of households below the absolute poverty line",
     "fontSize": 16,
     "subtitleFontSize": 13,
@@ -24,7 +24,8 @@
     },
     {
       "filter": "datum.Rate !== null && datum.Rate !== ''"
-    }
+    },
+    {"filter": "datum.Year >= 2002 && datum.Year <= 2022"}
   ],
   "mark": {
     "type": "line",
