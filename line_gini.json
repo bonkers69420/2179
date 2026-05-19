@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": {
+    "text": "Malaysia Gini Coefficient (1970–2022)",
+    "subtitle": "Gini coefficient across the years",
+    "fontSize": 16,
+    "subtitleFontSize": 13,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/poverty_ineq.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "calculate": "year(toDate(datum.date))",
+      "as": "Year"
+    },
+    {
+      "calculate": "toNumber(datum.gini)",
+      "as": "Rate"
+    },
+    {
+      "filter": "datum.Rate !== null && datum.Rate !== ''"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2.5,
+    "point": false
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "titleFontSize": 13
+      }
+    },
+    "y": {
+      "field": "Rate",
+      "type": "quantitative",
+      "title": "Gini coefficient",
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 13,
+        "format": ".1f"
+      }
+    },
+    "color": {"value": "#590d22"},
+    "tooltip": [
+      {"field": "Year", "type": "ordinal", "title": "Year"},
+      {"field": "Rate", "type": "quantitative", "title": "Gini coefficient", "format": ".1f"}
+    ]
+  }
+}
