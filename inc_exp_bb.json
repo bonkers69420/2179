@@ -10,7 +10,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hies_state.csv",
+    "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/hies_state.csv",
     "format": {"type": "csv"}
   },
   "transform": [
@@ -58,7 +58,7 @@
           "datum": "Mean Income",
           "scale": {
             "domain": ["Mean Income", "Mean Expenditure"],
-            "range": ["#1b4332", "#f72585"]
+            "range": ["#1b4332", "#B08EE6"]
           },
           "legend": {
             "title": null,
@@ -91,7 +91,7 @@
           "datum": "Mean Expenditure",
           "scale": {
             "domain": ["Mean Income", "Mean Expenditure"],
-            "range": ["#1b4332", "#f72585"]
+            "range": ["#1b4332", "#B08EE6"]
           },
           "legend": {
             "title": null,
