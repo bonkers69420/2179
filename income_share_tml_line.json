@@ -10,7 +10,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/Income%20Share%20of%20Top%2020%25%20%20Middle%2040%25%20and%20Bottom%2040%25.csv",
+    "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/Income%20Share%20of%20Top%2020%25%20%20Middle%2040%25%20and%20Bottom%2040%25.csv",
     "format": {"type": "csv"}
   },
   "transform": [
