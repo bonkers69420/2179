@@ -3,36 +3,50 @@
   "width": "container",
   "height": 500,
   "title": {
-    "text": "Malaysia Mean Household Income Rank by State (1970–2022)",
-    "subtitle": "Rank 1 = highest mean household income",
+    "text": "Malaysia Mean Household Income Rank by State (2002–2022)",
+    "subtitle": "Rank 1 = highest mean income",
     "fontSize": 16,
     "subtitleFontSize": 13,
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hh_income_state.csv",
+    "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/hh_income_state.csv",
     "format": {"type": "csv"}
   },
   "transform": [
-    {
-      "calculate": "year(toDate(datum.date))",
-      "as": "Year"
-    },
+    {"calculate": "year(toDate(datum.date))", "as": "Year"},
     {
       "filter": "datum.state !== 'W.P. Kuala Lumpur' && datum.state !== 'W.P. Labuan' && datum.state !== 'W.P. Putrajaya'"
     },
+    {"filter": "datum.Year >= 2002"},
     {
       "calculate": "datum.income_mean === '' ? null : toNumber(datum.income_mean)",
       "as": "income_mean_num"
     },
-    {
-      "filter": "datum.income_mean_num !== null"
-    },
+    {"filter": "datum.income_mean_num !== null"},
     {
       "window": [{"op": "rank", "as": "rank"}],
       "sort": [{"field": "income_mean_num", "order": "descending"}],
       "groupby": ["Year"],
       "frame": [null, null]
+    },
+    {"filter": "datum.rank <= 10"}
+  ],
+  "params": [
+    {
+      "name": "colorScale",
+      "value": {
+        "domain": [
+          "Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan",
+          "Pahang", "Perak", "Perlis", "Pulau Pinang", "Sabah",
+          "Sarawak", "Selangor", "Terengganu"
+        ],
+        "range": [
+          "#2d6a4f", "#b5838d", "#6E6EEB", "#606c38", "#52b788",
+          "#5e2d79", "#a7c957", "#8d5524", "#d4a373", "#005f73",
+          "#6c757d", "#4a4e69", "#A66902"
+        ]
+      }
     }
   ],
   "layer": [
@@ -40,7 +54,8 @@
       "mark": {
         "type": "line",
         "strokeWidth": 2.5,
-        "point": false
+        "point": false,
+        "interpolate": "linear"
       },
       "encoding": {
         "x": {
@@ -49,21 +64,25 @@
           "title": "Year",
           "axis": {
             "labelAngle": 0,
-            "labelFontSize": 11,
-            "titleFontSize": 13
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "grid": false
           }
         },
         "y": {
           "field": "rank",
           "type": "quantitative",
           "title": "Rank",
-          "scale": {"domain": [13, 1]},
+          "scale": {"domain": [10.4, 0.6]},
           "axis": {
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "titleFontSize": 13,
             "tickMinStep": 1,
-            "values": [1,2,3,4,5,6,7,8,9,10,11,12,13],
-            "format": "d"
+            "values": [1,2,3,4,5,6,7,8,9,10],
+            "format": "d",
+            "grid": true,
+            "gridDash": [3, 3],
+            "gridOpacity": 0.4
           }
         },
         "color": {
@@ -76,18 +95,20 @@
               "Sarawak", "Selangor", "Terengganu"
             ],
             "range": [
-             "#2d6a4f", "#b5838d", "#6b4226", "#606c38", "#52b788",
-  "#5e2d79", "#a7c957", "#8d5524", "#d4a373", "#005f73",
-  "#6c757d", "#4a4e69", "#95d5b2"
+              "#2d6a4f", "#b5838d", "#6E6EEB", "#606c38", "#52b788",
+              "#5e2d79", "#a7c957", "#8d5524", "#d4a373", "#005f73",
+              "#6c757d", "#4a4e69", "#A66902"
             ]
           },
           "legend": {
             "title": "State",
-            "labelFontSize": 14,
-            "titleFontSize": 15,
-            "orient": "right"
+            "labelFontSize": 13,
+            "titleFontSize": 13,
+            "orient": "right",
+            "offset": 80
           }
         },
+        "opacity": {"value": 0.85},
         "tooltip": [
           {"field": "state", "type": "nominal", "title": "State"},
           {"field": "Year", "type": "ordinal", "title": "Year"},
@@ -97,19 +118,13 @@
       }
     },
     {
-      "mark": {
-        "type": "circle",
-        "size": 80
-      },
+      "mark": {"type": "circle", "size": 90},
       "encoding": {
-        "x": {
-          "field": "Year",
-          "type": "ordinal"
-        },
+        "x": {"field": "Year", "type": "ordinal"},
         "y": {
           "field": "rank",
           "type": "quantitative",
-          "scale": {"domain": [13, 1]}
+          "scale": {"domain": [10.4, 0.6]}
         },
         "color": {
           "field": "state",
@@ -121,9 +136,9 @@
               "Sarawak", "Selangor", "Terengganu"
             ],
             "range": [
-             "#2d6a4f", "#b5838d", "#6b4226", "#606c38", "#52b788",
-  "#5e2d79", "#a7c957", "#8d5524", "#d4a373", "#005f73",
-  "#6c757d", "#4a4e69", "#95d5b2"
+              "#2d6a4f", "#b5838d", "#6E6EEB", "#606c38", "#52b788",
+              "#5e2d79", "#a7c957", "#8d5524", "#d4a373", "#005f73",
+              "#6c757d", "#4a4e69", "#A66902"
             ]
           },
           "legend": null
@@ -135,6 +150,46 @@
           {"field": "income_mean_num", "type": "quantitative", "title": "Mean Income (RM)", "format": ",.0f"}
         ]
       }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "transform": [{"filter": "datum.Year === 2022"}],
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {"domain": [10.4, 0.6]}
+        },
+        "text": {"field": "state", "type": "nominal"},
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan",
+              "Pahang", "Perak", "Perlis", "Pulau Pinang", "Sabah",
+              "Sarawak", "Selangor", "Terengganu"
+            ],
+            "range": [
+              "#2d6a4f", "#b5838d", "#6E6EEB", "#606c38", "#52b788",
+              "#5e2d79", "#a7c957", "#8d5524", "#d4a373", "#005f73",
+              "#6c757d", "#4a4e69", "#A66902"
+            ]
+          },
+          "legend": null
+        }
+      }
     }
-  ]
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"domainColor": "#ccc"}
+  }
 }
