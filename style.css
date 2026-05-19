@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --white:        #FFFFFF;
+  --ink:          #1A1A18;
+  --muted:        #5C5A54;
+  --accent:       #C0392B;
+  --accent-light: #E8D5D3;
+  --rule:         #D4CFC4;
+  --section-gap:  6rem;
+  --inner-gap:    3rem;
+  --chart-radius: 4px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--white);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ── MAIN TITLE HEADER ───────────────────────────────── */
+.site-header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 2rem 3.5rem;
+  text-align: center;
+  border-bottom: 2px solid var(--ink);
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+
+h1.main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+h1.main-title em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.intro-text {
+  max-width: 660px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* ── SECTION WRAPPER ─────────────────────────────────── */
+.section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.section-block {
+  margin-top: var(--section-gap);
+}
+
+/* ── SECTION TITLE ───────────────────────────────────── */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+h2.section-title {
+  font-family: 'Lora', serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* ── PROSE TEXT ──────────────────────────────────────── */
+.prose h3 {
+  font-family: 'Lora', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.prose p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.prose p:last-child { margin-bottom: 0; }
+
+.prose strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.prose inflation {
+  font-weight: 700;
+  color: #E8C65A;
+}
+
+.prose income_growth_rate{
+  font-weight: 700;
+  color :#E45756
+}
+
+.prose poverty_rate{
+  font-weight: 700;
+  color :#D9D0A9
+}
+
+.prose gini{
+  font-weight: 700;
+  color :#590d22
+}
+
+.prose selangor{
+  font-weight: 700;
+  color :#4a4e69;
+}
+.prose kelantan{
+  font-weight: 700;
+  color :#6b4226;
+}
+.prose terengganu{
+  font-weight: 700;
+  color :#95d5b2;
+}
+.prose sabah{
+  font-weight: 700;
+  color :#005f73;
+}
+
+
+
+/* ── TWO COLUMN: text left, chart right ──────────────── */
+.col-text-chart {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: var(--inner-gap);
+}
+
+/* ── TWO COLUMN: chart left, text right ──────────────── */
+.col-chart-text {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: var(--inner-gap);
+}
+
+/* ── TWO COLUMN SIDE BY SIDE EQUAL CHARTS ───────────── */
+.col-charts-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: var(--inner-gap);
+}
+
+.col-charts-equal > div {
+  width: 100%;
+  min-height: 380px;
+}
+
+/* ── THREE COLUMN: text left, two charts right ───────── */
+.col-text-twocharts {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: var(--inner-gap);
+}
+
+.col-text-twocharts .charts-stack {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.charts-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+
+/* ── TWO THIRDS CHART + ONE THIRD TEXT ───────────────── */
+.col-chart-wide-text {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: var(--inner-gap);
+}
+
+--Testing might delete
+.bump-chart-row {
+    grid-template-columns: 1fr 3fr;
+}
+/*--A full column without text*/
+.col-full {
+  width: 100%;
+  margin-bottom: var(--inner-gap);
+}
+
+/* ── CHART CONTAINERS ────────────────────────────────── */
+.chart-wrap {
+  width: 100%;
+  min-height: 380px;
+}
+
+.chart-wrap.tall { min-height: 460px; }
+.chart-wrap.map  { min-height: 440px; }
+
+/* ── ANNOTATION / CAPTION BELOW CHARTS ──────────────── */
+.annotation {
+  margin-top: 1.5rem;
+  margin-bottom: var(--inner-gap);
+  padding: 1.1rem 1.4rem;
+  border-left: 3px solid var(--accent-light);
+  background: rgba(255,255,255,0.45);
+  border-radius: 0 var(--chart-radius) var(--chart-radius) 0;
+}
+
+.annotation p {
+  font-family: 'Inter', sans-serif;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.annotation p strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ── SECTION DIVIDER ─────────────────────────────────── */
+.section-divider {
+  margin: var(--section-gap) 0 0;
+  border-top: 1px solid var(--rule);
+}
+
+/* ── REFERENCES ──────────────────────────────────────── */
+.references {
+  max-width: 860px;
+  margin: var(--section-gap) auto 0;
+  padding: 0 2rem 5rem;
+}
+
+.references h3 {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.references p,
+.references li {
+  font-family: 'Inter', sans-serif;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 2;
+}
+
+.references ol { padding-left: 1.2rem; }
+
+/* ── SPACERS ─────────────────────────────────────────── */
+.gap-sm { height: 1.5rem; }
+.gap-md { height: 3rem; }
+.gap-lg { height: 5rem; }
+
+/* ── VEGA EMBED OVERRIDES ────────────────────────────── */
+.vega-embed { width: 100% !important; }
+.vega-embed canvas,
+.vega-embed svg {
+  width: 100% !important;
+  border-radius: var(--chart-radius);
+}

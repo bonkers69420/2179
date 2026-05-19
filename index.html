@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malaysia Income Visualisation</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       MAIN TITLE
+  ══════════════════════════════════════════ -->
+  <header class="site-header">
+    <h1 class="main-title">The <em>Two Malaysias</em>:<br>A Nation Growing, But Not Equally</h1>
+  </header>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 1 — GENERAL STATISTICS
+  ══════════════════════════════════════════ -->
+  <main class="section">
+    <div class="section-block">
+
+      <div class="section-header">
+        <span class="section-label">Section 01</span>
+        <h2 class="section-title">General Statistics</h2>
+      </div>
+
+      <!-- Row 1: text left, chart right -->
+      <div class="col-text-chart">
+        <div class="prose">
+          <h3>Income has grown </h3>
+          <p>
+            From 1970 to 2022, the median and mean income of
+            Malaysian households have <strong>increased</strong> in a comfortable rate
+            with the <strong>biggest leap in absolute value</strong> happening around
+            the <strong>2010s</strong>.
+          </p>
+          <p>
+            However, this took a turn for the <strong>worse during 2020</strong> due
+            to the <strong>COVID-19</strong> pandemic which have left the world in a 
+            lockdown. Until this day, many countries are still recovering
+            from the fallout.
+          </p>
+        </div>
+        <div class="chart-wrap" id="chart-1-1"></div>
+        <script>
+          vegaEmbed('#chart-1-1', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/mean_median_income_line%20chart.json', { actions: false, width: "container" });
+        </script>
+      </div>
+
+      <!-- Row 2: chart left, text right -->
+      <div class="col-text-chart">
+        <div class="prose">
+          <h3>Growth rate over the years</h3>
+          <p>
+            Malaysia experienced <strong>strong economic growth in 1983 and 1984</strong> 
+            due to <strong>increased exports of crude petroleum and electronics</strong>, 
+            which became major contributors to GDP growth, resulting in
+            increased income.
+          </p>
+          <p>
+            During the year <strong>2020</strong>, the world was faced with the <strong>COVID-19
+            pandemic</strong>, <strong>halting many economic activities</strong>. This results in
+            an immense decrease in income for households in Malaysia.
+          </p>
+        </div>
+        <div class="chart-wrap" id="chart-1-2"></div>
+        <script>
+          vegaEmbed('#chart-1-2', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/rog_mean_median.json', { actions: false, width: "container" });
+        </script>
+      </div>
+
+      <!-- Row 3: text left, chart right -->
+      <div class="col-text-chart">
+        <div class="prose">
+          <h3>How about the states?</h3>
+          <p>
+            Across the decades, <selangor>Selangor</selangor> has remained at the top, 
+            never falling below <strong>1st place</strong>. <kelantan>Kelantan</kelantan> 
+            remains consistently in <strong>last</strong> place.
+          </p>
+          <p>
+            <terengganu>Terengganu</terengganu> is the state that has seen the most <strong>drastic change</strong> across
+            the decade. For the first 3 decades, it has consistenly remained at
+            the bottom. However, in the last 2 decades, it has taken over and 
+            in 2022 it is ranked the <strong>5th highest</strong>.
+        </div>
+        <div class="chart-wrap" id="chart-1-3"></div>
+        <script>
+          vegaEmbed('#chart-1-3', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/mean_income_state_bump_chart.json', { actions: false, width: "container" });
+        </script>
+      </div>
+
+      <!-- Row 4: text left, chart right -->
+      <div class="col-full">
+        <div class="chart-wrap" id="chart-1-4"></div>
+        <script>
+          vegaEmbed('#chart-1-4', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/mean_income_eth_bump.json', { actions: false, width: "container" });
+        </script>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         SECTION 2 — 2022 SNAPSHOT
+    ══════════════════════════════════════════ -->
+<div class="section-divider"></div>
+<div class="section-block">
+
+  <div class="section-header">
+    <span class="section-label">Section 02</span>
+    <h2 class="section-title">A Closer Look: The State of Malaysia in 2022</h2>
+  </div>
+
+  <!--Whole chart -->
+  <div class="col-full">
+    <div class="chart-wrap" id="chart-2-1"></div>
+    <script>
+      vegaEmbed('#chart-2-1', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/lollipop_mean_income_2022.json', { actions: false, width: "container" });
+    </script>
+    </div>
+   </div> 
+
+  <!-- chart left, text right -->
+  <div class="col-text-chart">
+    <div class="prose">
+      <h3>Does poverty rate have a effect on net cash flow?</h3>
+      <p>
+        <poverty_rate>Poverty rate</poverty_rate> refers to the ratio of the population 
+        who falls below the poverty line. 
+        <kelantan>Kelantan</kelantan> and <sabah>Sabah</sabah> are areas
+        that have a higher poverty rate. This can be due to the lack 
+        of urbanisation in those areas or due to the 
+        difference in <strong>cost of living</strong> in 
+        different states.  
+      </p>
+    </div>
+    <div class="chart-wrap" id="chart-2-2"></div>
+    <script>
+      vegaEmbed('#chart-2-2', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/chl_poverty_state.json', { actions: false, width: "container" });
+    </script>
+  </div>
+
+  <!-- chart left, text right -->
+  <div class="col-text-chart">
+    <div class="prose">
+      <h3>Breaking it down further</h3>
+      <p>
+        From observation, we can see that  
+        the cost of living in <selangor>Selangor</selangor> is the highest
+        among the states at <selangor>RM 6770</selangor>. However, Selangor 
+        is a <strong>well developed area</strong>, resulting in many job opportunities.
+        As such, it also has the highest mean income. Whereas, <kelantan>Kelantan</kelantan> suffers 
+        from not only a higher poverty rate but also a <strong>higher expenditure</strong> 
+        than other states which share a high poverty rate.
+      </p>
+    </div>
+    <div class="chart-wrap" id="chart-2-3">
+    <script>
+      vegaEmbed('#chart-2-3', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/inc_exp_bb.json', { actions: false, width: "container" });
+    </script>
+    </div>
+  </div>
+
+  <div class="col-text-chart">
+    <div class="prose">
+      <p>
+        This results in <selangor>Selangor</selangor> having the <strong>largest net cash flow</strong>. 
+        However, not all states with a high poverty rate would have the lowest net cash flow.
+        <kelantan>Kelantan</kelantan> is unfortunate to suffer from both a <strong>high poverty rate and high expenditure</strong> without sufficient
+        income. Other states such as Sabah and Sarawak does not suffer from a low net cash flow.
+        As such, <poverty_rate>poverty rate</poverty_rate> does not have a correlation with net cash flow.
+      </p>
+    </div>
+    <div class="chart-wrap" id="chart-2-4"></div>
+    <script>
+      vegaEmbed('#chart-2-4', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/inc-exp_gap_bar.json', { actions: false, width: "container" });
+    </script>
+  </div>
+
+</div>
+    <!-- ══════════════════════════════════════════
+         SECTION 3 — POVERTY & INEQUALITY
+    ══════════════════════════════════════════ -->
+    <div class="section-divider"></div>
+    <div class="section-block">
+
+      <div class="section-header">
+        <span class="section-label">Section 03</span>
+        <h2 class="section-title">Inequality, Poverty & The Cost of Living</h2>
+      </div>
+
+      <!-- chart left, text right -->
+      <div class="col-text-chart">
+        <div class="prose">
+          <h3>Inequality and poverty move together</h3>
+          <p>
+            <poverty_rate>Poverty rate</poverty_rate> and <gini>Gini coefficient</gini> has <strong>shrunk</strong>
+            over the years. This shows that Malaysians have succeeded in meeting their basic needs.
+          </p>
+          <p>
+             However, that doesn't mean they are thriving.
+            This is because income is still unequally distributed as the Gini
+            coefficient indicated. This can be seen <storng>below</strong> when
+            examining the <strong>distribution of income among different classes</strong>.
+          </p>
+        </div>
+        <div class="chart-wrap" id="chart-3-1"></div>
+        <script>
+          vegaEmbed('#chart-3-1', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/comb_pov_in.json', { actions: false, width: "container" });
+        </script>
+      </div>
+
+      <!-- chart only -->
+       <div class="col-full">
+        <div class="chart-wrap" id="chart-3-2"></div>
+        <script>
+          vegaEmbed('#chart-3-2', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/income_share_tml_line.json', { actions: false, width: "container" });
+        </script>
+      </div>
+
+      <div class="col-full">
+        <div class="chart-wrap" id="chart-3-3"></div>
+        <script>
+          vegaEmbed('#chart-3-3', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/inc_infl_comb.json', { actions: false, width: "container" });
+        </script>
+      </div>
+
+      <div class="col-text-chart">
+        <div class="prose">
+          <h3>Cost of living - are we keeping up?</h3>
+          <p>
+            It can be observed that <income_growth_rate>income growth rate</income_growth_rate> is <strong>volatile</strong>
+             whereas the <inflation>inflation rate</inflation> remains low. Income growth 
+            usually outpaces inflation rate, indicating a <strong>healthy economy</strong>.
+            There are exceptions to this as during the <income_growth_rate>Asian Financial Crisis</income_growth_rate> 
+            and <income_growth_rate>COVID-19 panedemic</income_growth_rate>, the income rate growth went <strong>down to the negatives</strong>.
+      
+          </p>
+        </div>
+        <div class="chart-wrap" id="chart-3-4"></div>
+        <script>
+          vegaEmbed('#chart-3-4', 'https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/incr_infl_line.json', { actions: false, width: "container" });
+        </script>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ══════════════════════════════════════════
+       REFERENCES
+  ══════════════════════════════════════════ -->
+  <div class="references">
+    <h3>References &amp; Data Sources</h3>
+    <ol>
+      <li>https://open.dosm.gov.my/data-catalogue/hh_income <em>Household Income and Basic Amenities Survey (HIS/BA).</em> Various years. Available at: dosm.gov.my</li>
+      <li>https://open.dosm.gov.my/data-catalogue/hh_income_state <em>Malaysia Income and Poverty Statistics.</em></li>
+      <li>https://open.dosm.gov.my/data-catalogue/hh_inequality<em>Malaysia Economic Monitor.</em> Washington D.C.: World Bank Group.</li>
+      <li>https://open.dosm.gov.my/data-catalogue/hies_state</li>
+      <li>https://open.dosm.gov.my/data-catalogue/hh_poverty</li>
+      <li>https://open.dosm.gov.my/data-catalogue/hh_poverty_state</li>
+      <li>https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?locations=MY</li>
+      <li>https://archive.data.gov.my/data/en_US/dataset/mean-monthly-household-gross-income-of-t20-m40-and-b40-of-households-by-ethnicity-malaysia</li>
+      <li>https://archive.data.gov.my/data/en_US/dataset/income-share-of-top-20-middle-40-and-bottom-40-of-households-by-stratamalaysia</li>
+    </ol>
+  </div>
+
+</body>
+</html>
