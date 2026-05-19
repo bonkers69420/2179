@@ -10,7 +10,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/inc_inflation.csv",
+    "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/inc_inflation.csv",
     "format": {
       "type": "csv",
       "parse": {"date": "date"}
