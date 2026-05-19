@@ -25,7 +25,7 @@
           "lookup": "stateName",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/hh_poverty.csv",
+              "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hh_poverty_state.csv",
               "format": {"type": "csv"}
             },
             "key": "state",
