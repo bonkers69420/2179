@@ -13,7 +13,7 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/malaysia-states-merged.topojson",
+        "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/malaysia-states-merged.topojson",
         "format": {"type": "topojson", "feature": "states"}
       },
       "transform": [
@@ -25,7 +25,7 @@
           "lookup": "stateName",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/bonkers69420/2179/refs/heads/main/hh_poverty_state.csv",
+              "url": "https://raw.githubusercontent.com/twm0011/2179/refs/heads/main/hh_poverty.csv",
               "format": {"type": "csv"}
             },
             "key": "state",
